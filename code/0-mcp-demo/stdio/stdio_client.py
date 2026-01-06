@@ -8,8 +8,8 @@ from mcp.client.stdio import stdio_client
 current_path = __file__.rsplit("/", 1)[0]
 
 server_params = StdioServerParameters(
-    command="uv",
-    args=["run", f"{current_path}/stdio_server.py"],
+    command="python",
+    args=["-u", f"{current_path}/stdio_server.py"],
 )
 
 

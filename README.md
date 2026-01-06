@@ -9,10 +9,21 @@ A workshop on how MCP servers help you accelerate your development workflows
 
 Ensure you have python 3.12+ installed
 
+**Option 1: Using uv (recommended if installed)**
+
 ```
 cd code
 uv sync
 uv venv
+source .venv/bin/activate
+```
+
+**Option 2: Using standard Python venv (if uv not available)**
+
+```
+# From repo root
+./scripts/dev.sh
+# Then activate manually if needed
 source .venv/bin/activate
 ```
 
