@@ -2,6 +2,7 @@
 import os
 import asyncio
 from mcp.server.fastmcp import FastMCP, Context
+import httpx
 
 
 mcp = FastMCP(name="0-mcp-intro-weather")
@@ -47,6 +48,25 @@ async def list_folders_under_roots(ctx: Context):
         return {"error": "No client roots available in context."}
     
     return {"roots": roots}
+
+
+@mcp.tool()
+async def download_webpage(url: str, ctx: Context) -> str:
+    """
+    Downloads the content of a web page as markdown using Jina reader.
+    
+    Args:
+        url: The URL of the web page to download
+        
+    Returns:
+        The markdown content of the web page
+    """
+    jina_url = f"https://r.jina.ai/{url}"
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.get(jina_url)
+        response.raise_for_status()
+        return response.text
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
