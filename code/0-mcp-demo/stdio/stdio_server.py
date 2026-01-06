@@ -64,5 +64,4 @@ async def list_folders_under_roots(ctx: Context):
     return {"roots": roots}
 
 if __name__ == "__main__":
-    print("starting server")
     mcp.run(transport="stdio")
